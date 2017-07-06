@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="TestAppOne">
+<div ng-controller="AppController">
+    <p><input type="text" ng-model="name"/>想要飞的更高：<input type="text" ng-model="value.ulItems"/>、<input type="text" ng-model="value.childrenDivClass"/></p>
+    <box value="value" name="name"></box>
+</div>
+</body>
+<script src="../resource/lib/angular.js"></script>
+<script src="../resource/lib/angular-ui-router.min.js"></script>
+<script type="text/javascript">
+    angular.module("boxMd", [])
+        .directive('box', function factory() {
+            var directiveDefinitionObject = {
+                restrict:"AE",
+                replace:true,
+                template:"<div><h4>吴文伦:</h4><p><input type='text' ng-model='name'/>出生于江西省赣州市信丰县，今年25岁了，目前在广州从事软件开发的工作。在外已有几年，匆匆岁月却至今无所成就，写此博客纪念将要到来的{{age}}岁生日！<input type='text' ng-model='value.ulItems'/>、<input type='text' ng-model='value.childrenDivClass'/></p></div>",
+                scope:{
+                    value:'=?',
+                    name:'&'
+                },
+                link: function (scope, element, attrs) {
+
+                }
+            };
+            return directiveDefinitionObject;
+        });
+    angular.module("TestAppOne",["boxMd"]);
+    angular.module("TestAppOne",["boxMd"]).controller("AppController",function ($scope) {
+        $scope.value = {ulItems:"i am AppController",childrenDivClass:"i am AI"};
+        $scope.name = "吴文伦";
+        $scope.age = "10";
+    })
+</script>
+</html>

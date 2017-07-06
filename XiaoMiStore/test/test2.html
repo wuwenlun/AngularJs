@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body ng-app="TestApp">
+
+<div ng-controller="testController">
+    <div>姓名：<input ng-model="user.basic.name" type="text"/></div>
+    <div>爸爸：<input ng-model="user.family.father" type="text"/></div>
+</div>
+
+</body>
+<script src="../resource/lib/angular.js"></script>
+<script type="text/javascript">
+    var testApp = angular.module("TestApp",[]);
+    testApp.controller('testController',["$scope",function($scope){
+        $scope.user = {
+            basic:{name:'',age:''},
+            family:{father:'',mother:'',brother:''}
+        };
+        $scope.$watch("user",function (newValue,oldValue) {
+            console.info(newValue);
+        },true)
+    }])
+</script>
+</html>
